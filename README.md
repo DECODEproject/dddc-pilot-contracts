@@ -235,7 +235,8 @@ This verifies if a blind proof of credential is valid, in a success case just pr
 ## :wrench: Testing
 
 ```bash
-./test/run.sh
+docker build -t decidim-pilot-contracts .
+docker run --rm -it decidim-pilot-contracts
 ```
 
 ***
