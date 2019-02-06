@@ -14,7 +14,7 @@
 
 # DECIDIM pilot Zencode contracts
 
-Zenroom Studio is a multiplatform (Gnu+Linux, Windows, macOS) IDE designed specifically to work with [Zenroom](https://github.com/DECODEproject/zenroom)
+This repository is meant to hold all the necessary **smart contracts** for the Decidim Barcelona Pilot. The smart contracts are written in zencode and will run over zenroom.
 
 The main use case for Zenroom is that of **distributed computing** of untrusted code where advanced cryptographic functions are required, for instance it can be used as a distributed ledger implementation (also known as **blockchain smart contracts**).
 
@@ -68,7 +68,7 @@ This script should be run once, and the output should be saved in a secure place
 
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
 | :---------: | :---------: | :---------: | :---------: |
-| **unique_id** | :no_entry_sign: | output of 01-CITIZEN-request-keypair | Yes  (e.g. **blind_signature.req**) |
+| **unique_id** | :no_entry_sign: | output of **01-CITIZEN-request-keypair** | Yes  (e.g. **blind_signature.req**) |
 | **declared attributes** (e.g. I'm 18) | | | |
 
 This contract creates a blind signature request to send to the credential issuer and **for each** declared attribute you should add `and I declare that I am` to the `zencode source`
@@ -127,7 +127,7 @@ This script should be run once, and the output should be saved in a secure place
 
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
 | :---------: | :---------: | :---------: | :---------: |
-| **ci_unique_id** | :no_entry_sign: | output of 03-CREDENTIAL_ISSUER-keypair | Yes  (e.g. **ci_verify_keypair.keys**) |
+| **ci_unique_id** | :no_entry_sign: | output of **03-CREDENTIAL_ISSUER-keypair** | Yes  (e.g. **ci_verify_keypair.keys**) |
 
 This contract prints the public part of the verification keypair of the credential issuer, that should be available to the **checker**
 
@@ -149,7 +149,7 @@ This contract prints the public part of the verification keypair of the credenti
 
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
 | :---------: | :---------: | :---------: | :---------: |
-| **ci_unique_id** | output of 02-CITIZEN-request-blind-signature | output of 03-CREDENTIAL_ISSUER-keypair | Yes  (e.g. **ci_signed_credential.json**) |
+| **ci_unique_id** | output of **02-CITIZEN-request-blind-signature** | output of **03-CREDENTIAL_ISSUER-keypair** | Yes  (e.g. **ci_signed_credential.json**) |
 
 This contract takes as DATA the output of [02-CITIZEN-request-blind-signature.zencode](#src/02-CITIZEN-request-blind-signature.zencode) and the secret keypair of the credential issuer and emits a signed credential that should be send back to the citizen.
 
@@ -172,7 +172,7 @@ This contract takes as DATA the output of [02-CITIZEN-request-blind-signature.ze
 
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
 | :---------: | :---------: | :---------: | :---------: |
-| **unique_id** | output of 05-CREDENTIAL_ISSUER-credential-blind-signature | output of 01-CITIZEN-request-keypair | Yes  (e.g. **credential.json**) |
+| **unique_id** | output of **05-CREDENTIAL_ISSUER-credential-blind-signature** | output of **01-CITIZEN-request-keypair** | Yes  (e.g. **credential.json**) |
 
 This is the last step of the provisioning of the citizen. This contract creates a blind signed credential to be stored in a secure place.
 
@@ -194,7 +194,7 @@ This is the last step of the provisioning of the citizen. This contract creates 
 
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
 | :---------: | :---------: | :---------: | :---------: |
-| **unique_id** | output of 06-CITIZEN-credential-blind-signature | output of 04-CREDENTIAL_ISSUER-public-verify-keypair | Yes  (e.g. **blindproof_credential.json**) |
+| **unique_id** | output of **06-CITIZEN-credential-blind-signature** | output of **04-CREDENTIAL_ISSUER-public-verify-keypair** | Yes  (e.g. **blindproof_credential.json**) |
 | **ci_unique_id** | | | |
 | **declared attributes** (e.g. I'm 18) | | | |
 
@@ -226,7 +226,7 @@ This is run by the citizen to create a valid blind proof of the credentials, sho
 
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
 | :---------: | :---------: | :---------: | :---------: |
-| **ci_unique_id** | output of 07-CITIZEN-blind-proof-credential | output of 04-CREDENTIAL_ISSUER-public-verify-keypair | :no_entry_sign: |
+| **ci_unique_id** | output of **07-CITIZEN-blind-proof-credential** | output of **04-CREDENTIAL_ISSUER-public-verify-keypair** | :no_entry_sign: |
 
 This verifies if a blind proof of credential is valid, in a success case just prints `OK` to stdout
 
