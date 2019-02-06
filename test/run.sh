@@ -14,3 +14,5 @@ set -o pipefail
 /code/zenroom/src/zenroom-static -k keypair.keys -a ci_signed_credential.json /src/06-CITIZEN-credential-blind-signature.zencode > credential.json  2>/dev/null
 /code/zenroom/src/zenroom-static -k ci_verify_keypair.keys -a credential.json /src/07-CITIZEN-blind-proof-credential.zencode > blindproof_credential.json  2>/dev/null
 /code/zenroom/src/zenroom-static -k ci_verify_keypair.keys -a blindproof_credential.json /src/08-VERIFIER-verify-blind-proof-credential.zencode  2>/dev/null
+
+exit $?
