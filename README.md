@@ -6,9 +6,12 @@
 </p>
 
 <p align="center">
-    <a href="https://dyne.org">
-        <img src="https://img.shields.io/badge/%3C%2F%3E%20with%20%E2%9D%A4%20by-Dyne.org-blue.svg" alt="Dyne.org">
-    </a>
+	<a href="https://travis-ci.com/DECODEproject/decidim-pilot-contracts">
+		<img src="https://travis-ci.com/DECODEproject/decidim-pilot-contracts.svg?branch=master" alt="Build Status">
+	</a>
+	<a href="https://dyne.org">
+		<img src="https://img.shields.io/badge/%3C%2F%3E%20with%20%E2%9D%A4%20by-Dyne.org-blue.svg" alt="Dyne.org">
+	</a>
 </p>
 
 
