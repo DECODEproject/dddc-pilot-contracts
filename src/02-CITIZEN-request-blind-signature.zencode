@@ -1,0 +1,16 @@
+-- 0 for silent logging
+ZEN:begin(1)
+
+ZEN:parse([[
+Scenario 'credential_request': "To run after the request keypair is stored (keypair.keys)"
+         Given that I am known as 'unique_id'
+		 and I have my credential request keypair
+		 When I declare that I am '18 yrs old'
+		  and I declare that I am 'Resident in Barcelona'
+		 and I request a credential blind signature
+		 Then print all data
+]])
+
+ZEN:run()
+
+
