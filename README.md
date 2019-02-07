@@ -1,11 +1,18 @@
-<p align="center" valign="middle">
-    <a href="https://zenroom.dyne.org">
-        <img src="https://cdn.jsdelivr.net/gh/DECODEproject/zenroom@master/docs/logo/zenroom.svg" height="200" alt="Zenroom">
-    </a>
-    <img src="https://raw.githubusercontent.com/AjuntamentdeBarcelona/decidimbcn/master/app/assets/images/decidim-logo.png" height="100" valign="middle" alt="Decidim">
-</p>
 
-<p align="center">
+<table style="border-collapse: collapse;">
+		<tr>
+			<td valign="center">
+				    <a href="https://zenroom.dyne.org">
+        <img src="https://cdn.jsdelivr.net/gh/DECODEproject/zenroom@master/docs/logo/zenroom.svg" height="140" alt="Zenroom">
+    </a>
+			</td>
+						<td valign="center">
+							 <img src="https://raw.githubusercontent.com/AjuntamentdeBarcelona/decidimbcn/master/app/assets/images/decidim-logo.png" height="100" valign="middle" alt="Decidim">
+</td>
+		</tr>
+	</table>
+
+<p>
 	<a href="https://travis-ci.com/DECODEproject/decidim-pilot-contracts">
 		<img src="https://travis-ci.com/DECODEproject/decidim-pilot-contracts.svg?branch=master" alt="Build Status">
 	</a>
