@@ -13,8 +13,8 @@
 	</table>
 
 <p>
-	<a href="https://travis-ci.com/DECODEproject/decidim-pilot-contracts">
-		<img src="https://travis-ci.com/DECODEproject/decidim-pilot-contracts.svg?branch=master" alt="Build Status">
+	<a href="https://travis-ci.com/DECODEproject/dddc-pilot-contracts">
+		<img src="https://travis-ci.com/DECODEproject/dddc-pilot-contracts.svg?branch=master" alt="Build Status">
 	</a>
 	<a href="https://dyne.org">
 		<img src="https://img.shields.io/badge/%3C%2F%3E%20with%20%E2%9D%A4%20by-Dyne.org-blue.svg" alt="Dyne.org">
@@ -22,9 +22,9 @@
 </p>
 
 
-# DECIDIM pilot Zencode contracts
+# DDDC pilot Zencode contracts
 
-This repository is meant to hold all the necessary **smart contracts** for the Decidim Barcelona Pilot. The smart contracts are written in zencode and will run over zenroom.
+This repository is meant to hold all the necessary **smart contracts** for the DDDC Barcelona Pilot. The smart contracts are written in zencode and will run over zenroom.
 
 The main use case for Zenroom is that of **distributed computing** of untrusted code where advanced cryptographic functions are required, for instance it can be used as a distributed ledger implementation (also known as **blockchain smart contracts**).
 
@@ -245,8 +245,8 @@ This verifies if a blind proof of credential is valid, in a success case just pr
 ## :wrench: Testing
 
 ```bash
-docker build -t decidim-pilot-contracts .
-docker run --rm -it decidim-pilot-contracts
+docker build -t dddc-pilot-contracts .
+docker run --rm -it dddc-pilot-contracts
 ```
 
 ***
