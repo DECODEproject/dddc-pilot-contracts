@@ -2,7 +2,7 @@
 ZEN:begin(1)
 
 ZEN:parse([[
-Scenario 'credential_request': "To run after the request keypair is stored (keypair.keys)"
+Scenario 'coconut': "To run after the request keypair is stored (keypair.keys)"
          Given that I am known as 'unique_id'
 		 and I have my credential request keypair
 		 When I declare that I am '18 yrs old'

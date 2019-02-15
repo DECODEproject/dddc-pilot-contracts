@@ -2,10 +2,10 @@
 ZEN:begin(1)
 
 ZEN:parse([[
-Scenario 'credential_request_keypair': "To run over the mobile wallet the first time and store the output as keypair.keys"
+Scenario 'coconut': "To run over the mobile wallet the first time and store the output as keypair.keys"
          Given that I am known as 'unique_id'
          When I create my new credential request keypair
-         Then print keypair 'unique_id'
+         Then print all data
 ]])
 
 ZEN:run()
