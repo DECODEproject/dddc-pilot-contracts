@@ -28,7 +28,7 @@ This repository is meant to hold all the necessary **smart contracts** for the D
 
 The main use case for Zenroom is that of **distributed computing** of untrusted code where advanced cryptographic functions are required, for instance it can be used as a distributed ledger implementation (also known as **blockchain smart contracts**).
 
-Zenroom is a software in **ALPHA stage** and are part of the [DECODE project](https://decodeproject.eu) about data-ownership and [technological sovereignty](https://www.youtube.com/watch?v=RvBRbwBm_nQ). Our effort is that of improving people's awareness of how their data is processed by algorithms, as well facilitate the work of developers to create along [privacy by design principles](https://decodeproject.eu/publications/privacy-design-strategies-decode-architecture) using algorithms that can be deployed in any situation without any change.
+Zenroom is a software in **BETA stage** and are part of the [DECODE project](https://decodeproject.eu) about data-ownership and [technological sovereignty](https://www.youtube.com/watch?v=RvBRbwBm_nQ). Our effort is that of improving people's awareness of how their data is processed by algorithms, as well facilitate the work of developers to create along [privacy by design principles](https://decodeproject.eu/publications/privacy-design-strategies-decode-architecture) using algorithms that can be deployed in any situation without any change.
 
 <details>
  <summary><strong>:triangular_flag_on_post: Table of Contents</strong> (click to expand)</summary>
@@ -60,30 +60,30 @@ The second step is the verification of blind proof that is structured as follows
   2. A checker/verifier can verify the `blind proof of credentials` returning true or fail (Script 8)
 
 
-### 01-CITIZEN-request-keypair.zencode
+### 01-CITIZEN-credential-keygen.zencode
 
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
 | :---------: | :---------: | :---------: | :---------: |
-| **unique_id** | :no_entry_sign: | :no_entry_sign: | Yes  (e.g. **keypair.keys**) |
+| **identifier** | :no_entry_sign: | :no_entry_sign: | Yes  (e.g. **keypair.keys**) |
 
 This script should be run once, and the output should be saved in a secure place, it will contain the secret and public keyring of the citizen
 
 *:running_woman: Expected result format*
 
 ```json
-{"unique_id":{"public":"...","private":"..."}}
+{"identifier":{"public":"...","private":"..."}}
 ```
 
-### 02-CITIZEN-request-blind-signature.zencode
+### 02-CITIZEN-credential-request.zencode
 
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
 | :---------: | :---------: | :---------: | :---------: |
-| **unique_id** | :no_entry_sign: | output of **01-CITIZEN-request-keypair** | Yes  (e.g. **blind_signature.req**) |
+| **identifier** | :no_entry_sign: | output of **01-CITIZEN-credential-keygen** | Yes  (e.g. **blind_signature.req**) |
 | **declared attributes** (e.g. I'm 18) | | | |
 
 This contract creates a blind signature request to send to the credential issuer and **for each** declared attribute you should add `and I declare that I am` to the `zencode source`
 
-The previous saved keypair from [01-CITIZEN-request-keypair.zencode](#01-CITIZEN-request-keypair.zencode) should be passed as the `KEYS` and the **unique_id** should be the same of the one stored in such `KEYS`.
+The previous saved keypair from [01-CITIZEN-request-keypair.zencode](#01-CITIZEN-request-keypair.zencode) should be passed as the `KEYS` and the **identifier** should be the same of the one stored in such `KEYS`.
 The output should be sent to the credential issuer to be signed.
 
 *:running_woman: Expected result format*
@@ -107,11 +107,11 @@ The output should be sent to the credential issuer to be signed.
 }
 ```
 
-### 03-CREDENTIAL_ISSUER-keypair.zencode
+### 03-CREDENTIAL_ISSUER-keygen.zencode
 
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
 | :---------: | :---------: | :---------: | :---------: |
-| **ci_unique_id** | :no_entry_sign: | :no_entry_sign: | Yes  (e.g. **ci_keypair.keys**) |
+| **issuer_identifier** | :no_entry_sign: | :no_entry_sign: | Yes  (e.g. **issuer_keypair.keys**) |
 
 This script should be run once, and the output should be saved in a secure place, it will contain the secret and public keyring of the credential_issuer
 
@@ -119,7 +119,7 @@ This script should be run once, and the output should be saved in a secure place
 
 ```json
 {
-   "ci_unique_id":{
+   "issuer_identifier":{
       "sign":{
          "y":"...",
          "x":"..."
@@ -133,11 +133,11 @@ This script should be run once, and the output should be saved in a secure place
 }
 ```
 
-### 04-CREDENTIAL_ISSUER-public-verify-keypair.zencode
+### 04-CREDENTIAL_ISSUER-publish-verifier.zencode
 
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
 | :---------: | :---------: | :---------: | :---------: |
-| **ci_unique_id** | :no_entry_sign: | output of **03-CREDENTIAL_ISSUER-keypair** | Yes  (e.g. **ci_verify_keypair.keys**) |
+| **issuer_identifier** | :no_entry_sign: | output of **03-CREDENTIAL_ISSUER-keygen** | Yes  (e.g. **issuer_verifier.keys**) |
 
 This contract prints the public part of the verification keypair of the credential issuer, that should be available to the **checker**
 
@@ -145,7 +145,7 @@ This contract prints the public part of the verification keypair of the credenti
 
 ```json
 {
-   "ci_unique_id":{
+   "issuer_identifier":{
       "verify":{
          "beta":"...",
          "g2":"...",
@@ -155,11 +155,11 @@ This contract prints the public part of the verification keypair of the credenti
 }
 ```
 
-### 05-CREDENTIAL_ISSUER-credential-blind-signature.zencode
+### 05-CREDENTIAL_ISSUER-credential-sign.zencode
 
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
 | :---------: | :---------: | :---------: | :---------: |
-| **ci_unique_id** | output of **02-CITIZEN-request-blind-signature** | output of **03-CREDENTIAL_ISSUER-keypair** | Yes  (e.g. **ci_signed_credential.json**) |
+| **issuer_identifier** | output of **02-CITIZEN-credential-request** | output of **03-CREDENTIAL_ISSUER-keygen** | Yes  (e.g. **issuer_signed_credential.json**) |
 
 This contract takes as DATA the output of [02-CITIZEN-request-blind-signature.zencode](#src/02-CITIZEN-request-blind-signature.zencode) and the secret keypair of the credential issuer and emits a signed credential that should be send back to the citizen.
 
@@ -167,7 +167,7 @@ This contract takes as DATA the output of [02-CITIZEN-request-blind-signature.ze
 
 ```json
 {
-  "ci_unique_id": {
+  "issuer_identifier": {
     "a_tilde": "...",
     "schema": "coconut_sigmatilde",
     "b_tilde": "...",
@@ -178,11 +178,11 @@ This contract takes as DATA the output of [02-CITIZEN-request-blind-signature.ze
 ```
 
 
-### 06-CITIZEN-credential-blind-signature.zencode
+### 06-CITIZEN-aggregate-credential-signature.zencode
 
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
 | :---------: | :---------: | :---------: | :---------: |
-| **unique_id** | output of **05-CREDENTIAL_ISSUER-credential-blind-signature** | output of **01-CITIZEN-request-keypair** | Yes  (e.g. **credential.json**) |
+| **identifier** | output of **05-CREDENTIAL_ISSUER-credential-sign** | output of **01-CITIZEN-credential-keygen** | Yes  (e.g. **credential.json**) |
 
 This is the last step of the provisioning of the citizen. This contract creates a blind signed credential to be stored in a secure place.
 
@@ -190,7 +190,7 @@ This is the last step of the provisioning of the citizen. This contract creates 
 
 ```json
 {
-  "name": "unique_id",
+  "name": "identifier",
   "credential": {
     "h": "...",
     "schema": "coconut_aggsigma",
@@ -200,12 +200,12 @@ This is the last step of the provisioning of the citizen. This contract creates 
 }
 ```
 
-### 07-CITIZEN-blind-proof-credential.zencode
+### 07-CITIZEN-prove-credential.zencode
 
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
 | :---------: | :---------: | :---------: | :---------: |
-| **unique_id** | output of **06-CITIZEN-credential-blind-signature** | output of **04-CREDENTIAL_ISSUER-public-verify-keypair** | Yes  (e.g. **blindproof_credential.json**) |
-| **ci_unique_id** | | | |
+| **identifier** | output of **06-CITIZEN-aggregate-credential-signature** | output of **04-CREDENTIAL_ISSUER-publish-verifier** | Yes  (e.g. **blindproof_credential.json**) |
+| **issuer_identifier** | | | |
 | **declared attributes** (e.g. I'm 18) | | | |
 
 This is run by the citizen to create a valid blind proof of the credentials, should be then send to the checker/verifier
@@ -232,11 +232,11 @@ This is run by the citizen to create a valid blind proof of the credentials, sho
 }
 ```
 
-### 08-VERIFIER-verify-blind-proof-credential.zencode
+### 08-VERIFIER-verify-credential.zencode
 
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
 | :---------: | :---------: | :---------: | :---------: |
-| **ci_unique_id** | output of **07-CITIZEN-blind-proof-credential** | output of **04-CREDENTIAL_ISSUER-public-verify-keypair** | :no_entry_sign: |
+| **issuer_identifier** | output of **07-CITIZEN-prove-credential** | output of **04-CREDENTIAL_ISSUER-publish-verifier** | :no_entry_sign: |
 
 This verifies if a blind proof of credential is valid, in a success case just prints `OK` to stdout
 
