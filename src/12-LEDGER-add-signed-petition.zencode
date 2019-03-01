@@ -8,6 +8,5 @@ Scenario 'coconut': "Add a petition to the ledger (count): here the petition sig
 		 When a valid petition signature is counted
 		 Then print all data
 ]])
-]])
 
 ZEN:run()
