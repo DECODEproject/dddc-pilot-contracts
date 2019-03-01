@@ -461,6 +461,14 @@ Close the petition, formally 'the tally': this contract adds the final block to 
 
 ```
 
+### 14-CITIZEN-count-petition.zencode
+
+| :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
+| :--------------------: | :---------------: | :-------------------------: | :--------------------: |
+| :no_entry_sign:   | output of **11-CITIZEN-sign-petition.zencode** | output of **13-CITIZEN-tally-petition.zencode** | :no_entry_sign: |
+
+Count the petition results: any Citizen can count the petition as long as they have the 'tally'.
+
 
 ***
 
