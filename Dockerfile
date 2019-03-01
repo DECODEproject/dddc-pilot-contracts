@@ -1,4 +1,4 @@
-FROM decodeproject/zenroom
+FROM decodeproject/zenroom:latest
 
 COPY src /src
 COPY test /test
