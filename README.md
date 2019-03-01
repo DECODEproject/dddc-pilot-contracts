@@ -296,8 +296,7 @@ Citizen creates a new petition, using his own key, the credential and the creden
 		"schema": "issue_verify",
 	}
 }
-
-
+```
 
 
 ***
