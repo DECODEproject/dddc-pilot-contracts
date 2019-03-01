@@ -21,5 +21,4 @@ zenroom -k petition.json              -a petition_signature.json   /src/12-LEDGE
 zenroom -k credential.json            -a petition-increase.json    /src/13-CITIZEN-tally-petition.zencode                > tally.json
 zenroom -k tally.json                 -a petition-increase.json    /src/14-CITIZEN-count-petition.zencode              
 
-
 exit $?
