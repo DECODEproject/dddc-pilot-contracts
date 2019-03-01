@@ -346,6 +346,44 @@ Approve the creation of a petition: executed by a Citizen, using several keys.
 
 ```
 
+### 11-CITIZEN-sign-petition.zencode
+
+| :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
+| :---------: | :---------: | :---------: | :---------: |
+| **identifier** | output of **04-CREDENTIAL_ISSUER-publish-verifier.zencode** | output of **06-CITIZEN-aggregate-credential-signature.zencode** | Yes  (e.g. **petition_signature.json**) |
+| **issuer_identifier** | | | |
+| **petition** (Pe) | | | |
+
+Approve the creation of a petition: executed by a Citizen, using several keys.
+
+*:running_woman: Expected result format*
+
+```json
+
+{
+	"petition_signature": {
+		"proof": {
+			"kappa": "...",
+			"nu": "...",
+			"pi_v": {
+				"c": "...",
+				"rm": "...",
+				"rr": "..."
+			},
+			"schema": "theta",
+			"sigma_prime": {
+				"h_prime": "...",
+				"s_prime": "..."
+			},
+			"zenroom": "0.8.1"
+		},
+		"uid_petition": "...",
+		"uid_signature": "..."
+	}
+}
+
+```
+
 
 ***
 
