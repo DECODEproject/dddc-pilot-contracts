@@ -9,6 +9,5 @@ Scenario 'coconut': "Count the petition results: any Citizen can count the petit
 		 and print debug info
 		 Then print all data
 ]])
-]])
 
 ZEN:run()
