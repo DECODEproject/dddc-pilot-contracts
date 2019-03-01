@@ -354,7 +354,7 @@ Approve the creation of a petition: executed by a Citizen, using several keys.
 | **issuer_identifier** | | | |
 | **petition** (Pe) | | | |
 
-Approve the creation of a petition: executed by a Citizen, using several keys.
+Sign petition: the Citizen signs the petition, with his own keys, aggregating it with the credential and with the Credential Issuer public key.
 
 *:running_woman: Expected result format*
 
@@ -374,8 +374,7 @@ Approve the creation of a petition: executed by a Citizen, using several keys.
 			"sigma_prime": {
 				"h_prime": "...",
 				"s_prime": "..."
-			},
-			"zenroom": "0.8.1"
+			},			
 		},
 		"uid_petition": "...",
 		"uid_signature": "..."
@@ -384,6 +383,40 @@ Approve the creation of a petition: executed by a Citizen, using several keys.
 
 ```
 
+### 12-LEDGER-add-signed-petition.zencode
+
+| :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
+| :---------: | :---------: | :---------: | :---------: |
+| :no_entry_sign:  | output of **09-CITIZEN-create-petition.zencode** | output of **10-VERIFIER-approve-petition.zencode** | Yes  (e.g. **petition-increase.json**) |
+
+Add a petition to the ledger (count): here the petition signature created by the citizen is aggregated with the petition and written to the ledger, no encryption is used.
+
+*:running_woman: Expected result format*
+
+```json
+
+{
+	"petition_signature": {
+		"proof": {
+			"kappa": "...",
+			"nu": "...",
+			"pi_v": {
+				"c": "...",
+				"rm": "...",
+				"rr": "..."
+			},
+			"schema": "theta",
+			"sigma_prime": {
+				"h_prime": "...",
+				"s_prime": "..."
+			},		
+		},
+		"uid_petition": "...",
+		"uid_signature": "..."
+	}
+}
+
+```
 
 ***
 
