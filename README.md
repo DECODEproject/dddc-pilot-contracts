@@ -235,8 +235,8 @@ This is run by the citizen to create a valid blind proof of the credentials, sho
 ### 08-VERIFIER-verify-credential.zencode
 
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
-| :---------: | :---------: | :---------: | :---------: |
-| **issuer_identifier** | output of **07-CITIZEN-prove-credential** | output of **04-CREDENTIAL_ISSUER-publish-verifier** | :no_entry_sign: |
+| :--------------------: | :---------------: | :-------------------------: | :--------------------: |
+| **issuer_identifier**   | output of **04-CREDENTIAL_ISSUER-publish-verifier** | output of **07-CITIZEN-prove-credential** | :no_entry_sign: |
 
 This verifies if a blind proof of credential is valid, in a success case just prints `OK` to stdout
 
