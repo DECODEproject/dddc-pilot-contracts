@@ -240,6 +240,7 @@ This is run by the citizen to create a valid blind proof of the credentials, sho
 
 This verifies if a blind proof of credential is valid, in a success case just prints `OK` to stdout
 
+
 ### 09-CITIZEN-create-petition.zencode
 
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
@@ -296,6 +297,53 @@ Citizen creates a new petition, using his own key, the credential and the creden
 		"schema": "issue_verify",
 	}
 }
+```
+
+
+
+### 10-VERIFIER-approve-petition.zencode
+
+| :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
+| :---------: | :---------: | :---------: | :---------: |
+| **issuer_identifier** | output of ** 09-CITIZEN-create-petition.zencode  ** | output of **04-CREDENTIAL_ISSUER-publish-verifier.zencode  ** | Yes  (e.g. **petition.json**) |
+
+Approve the creation of a petition: executed by a Citizen, using several keys.
+
+*:running_woman: Expected result format*
+
+```json
+
+{
+	"petition": {
+		"list": {
+			"...": true,
+			"...": true,
+			"...": true
+		},
+		"owner": "...",
+		"schema": "petition",
+		"scores": {
+			"neg": {
+				"left": "",
+				"right": ""
+			},
+			"pos": {
+				"left": "",
+				"right": ""
+			},
+
+		},
+		"uid": "...",
+
+	},
+	"verifier": {
+		"alpha": "",
+		"beta": "",
+		"schema": "issue_verify",
+	}
+}
+
+
 ```
 
 
