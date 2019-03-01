@@ -240,6 +240,66 @@ This is run by the citizen to create a valid blind proof of the credentials, sho
 
 This verifies if a blind proof of credential is valid, in a success case just prints `OK` to stdout
 
+### 09-CITIZEN-create-petition.zencode
+
+| :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
+| :---------: | :---------: | :---------: | :---------: |
+| **identifier** | output of **04-CREDENTIAL_ISSUER-publish-verifier.zencode ** | output of **06-CITIZEN-aggregate-credential-signature.zencode ** | Yes  (e.g. **petition_request.json**) |
+| **issuer_identifier** | | | |
+| **petition** (Pe) | | | |
+
+Citizen creates a new petition, using his own key, the credential and the credential issuer's public.
+
+*:running_woman: Expected result format*
+
+```json
+
+
+{
+	"petition": {
+		
+		"owner": "...",
+		"schema": "petition",
+		"scores": {
+				"neg": {
+				"left": "Infinity",
+				"right": "Infinity"
+			},
+			"pos": {
+				"left": "Infinity",
+				"right": "Infinity"
+			},
+
+		},
+		"uid": "...",
+
+	},
+	"petition_ecdh_sign": ["..."],
+	"proof": {
+		"kappa": "",
+		"nu": "",
+		"pi_v": {
+			"c": "",
+			"rm": "",
+			"rr": ""
+		},
+		"schema": "theta",
+		"sigma_prime": {
+			"h_prime": "",
+			"s_prime": ""
+		},
+
+	},
+	"verifier": {
+		"alpha": "",
+		"beta": "",
+		"schema": "issue_verify",
+	}
+}
+
+
+
+
 ***
 
 ## :wrench: Testing
