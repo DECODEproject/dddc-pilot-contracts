@@ -245,7 +245,7 @@ This verifies if a blind proof of credential is valid, in a success case just pr
 
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
 | :---------: | :---------: | :---------: | :---------: |
-| **identifier** | output of **04-CREDENTIAL_ISSUER-publish-verifier.zencode ** | output of **06-CITIZEN-aggregate-credential-signature.zencode ** | Yes  (e.g. **petition_request.json**) |
+| **identifier** | output of **04-CREDENTIAL_ISSUER-publish-verifier.zencode** | output of **06-CITIZEN-aggregate-credential-signature.zencode** | Yes  (e.g. **petition_request.json**) |
 | **issuer_identifier** | | | |
 | **petition** (Pe) | | | |
 
@@ -305,7 +305,7 @@ Citizen creates a new petition, using his own key, the credential and the creden
 
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
 | :---------: | :---------: | :---------: | :---------: |
-| **issuer_identifier** | output of ** 09-CITIZEN-create-petition.zencode  ** | output of **04-CREDENTIAL_ISSUER-publish-verifier.zencode  ** | Yes  (e.g. **petition.json**) |
+| **issuer_identifier** | output of **09-CITIZEN-create-petition.zencode** | output of **04-CREDENTIAL_ISSUER-publish-verifier.zencode  ** | Yes  (e.g. **petition.json**) |
 
 Approve the creation of a petition: executed by a Citizen, using several keys.
 
