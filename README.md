@@ -418,6 +418,50 @@ Add a petition to the ledger (count): here the petition signature created by the
 
 ```
 
+### 13-CITIZEN-tally-petition.zencode
+
+| :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
+| :---------: | :---------: | :---------: | :---------: |
+| **identifier** | output of **11-CITIZEN-sign-petition.zencode** | output of **06-CITIZEN-aggregate-credential-signature.zencode** | Yes  (e.g. **tally.json**) |
+
+Close the petition, formally 'the tally': this contract adds the final block to the ledger, making it impossible to sign petition after this has happened. It's also impossible to count the signatures without having the petition tallied.
+
+*:running_woman: Expected result format*
+
+```json
+
+{
+	"petition": {
+		"owner": "...",
+		"schema": "petition",
+		"scores": {
+			"neg": {
+				"left": "...",
+				"right": "..."
+			},
+			"pos": {
+				"left": "...",
+				"right": "..."
+			},
+		},
+		"uid": "..."
+	},
+	"tally": {
+		"c": "...",
+		"dec": {
+			"neg": "...",
+			"pos": "..."
+		},
+		"rx": "...",
+		"schema": "petition_tally",
+		"uid": "..."
+	}
+}
+
+
+```
+
+
 ***
 
 ## :wrench: Testing
