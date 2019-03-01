@@ -9,6 +9,5 @@ Scenario 'coconut': "Close the petition, formally 'the tally': this contract add
 		 When I tally the petition
 		 Then print all data
 ]])
-]])
 
 ZEN:run()
