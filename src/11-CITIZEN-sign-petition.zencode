@@ -1,5 +1,5 @@
 -- 0 for silent logging
-ZEN:begin(1)
+ZEN:begin(0)
 
 ZEN:parse([[
 Scenario 'coconut': "Sign petition: the Citizen signs the petition, with his own keys, aggregating it with the credential and with the Credential Issuer public key"
