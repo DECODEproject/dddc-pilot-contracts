@@ -387,7 +387,7 @@ Sign petition: the Citizen signs the petition, with his own keys, aggregating it
 
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
 | :---------: | :---------: | :---------: | :---------: |
-| :no_entry_sign:  | output of **09-CITIZEN-create-petition.zencode** | output of **10-VERIFIER-approve-petition.zencode** | Yes  (e.g. **petition-increase.json**) |
+| :no_entry_sign:  | output of **11-CITIZEN-sign-petition.zencode** | output of **10-VERIFIER-approve-petition.zencode** | Yes  (e.g. **petition-increase.json**) |
 
 Add a petition to the ledger (count): here the petition signature created by the citizen is aggregated with the petition and written to the ledger, no encryption is used.
 
@@ -422,7 +422,7 @@ Add a petition to the ledger (count): here the petition signature created by the
 
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
 | :---------: | :---------: | :---------: | :---------: |
-| **identifier** | output of **11-CITIZEN-sign-petition.zencode** | output of **06-CITIZEN-aggregate-credential-signature.zencode** | Yes  (e.g. **tally.json**) |
+| **identifier** | output of **12-LEDGER-add-signed-petition.zencode** | output of **06-CITIZEN-aggregate-credential-signature.zencode** | Yes  (e.g. **tally.json**) |
 
 Close the petition, formally 'the tally': this contract adds the final block to the ledger, making it impossible to sign petition after this has happened. It's also impossible to count the signatures without having the petition tallied.
 
