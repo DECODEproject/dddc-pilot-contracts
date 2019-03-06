@@ -470,6 +470,24 @@ Close the petition, formally 'the tally': this contract adds the final block to 
 Count the petition results: any Citizen can count the petition as long as they have the 'tally'.
 
 
+### 50-MISC-hashing.zencode
+
+| :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
+| :---------: | :---------: | :---------: | :---------: |
+| :no_entry_sign: | content you want to hash | :no_entry_sign: | HASH |
+
+This script make a unique hash of the content passed in DATA.
+The hashing algorithm is a sha512 with [KDF](https://en.wikipedia.org/wiki/Key_derivation_function),
+to prevent bruteforcing, hence could be not immediate.
+
+This has to be run oven all personal information, before sending to the credential issuer.
+
+*:running_woman: Expected result format*
+
+```json
+{"identifier":{"public":"...","private":"..."}}
+```
+
 ***
 
 ## :wrench: Testing
