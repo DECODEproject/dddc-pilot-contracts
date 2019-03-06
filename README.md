@@ -482,11 +482,6 @@ to prevent bruteforcing, hence could be not immediate.
 
 This has to be run oven all personal information, before sending to the credential issuer.
 
-*:running_woman: Expected result format*
-
-```json
-{"identifier":{"public":"...","private":"..."}}
-```
 
 ***
 
