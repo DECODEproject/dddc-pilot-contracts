@@ -174,6 +174,14 @@ This contract takes as DATA the output of [02-CITIZEN-request-blind-signature.ze
     "version": "0.8.1",
     "h": "..."
   }
+  "verifiy": {
+      "alpha" : "...",
+      "curve" : "bls383",
+      "schema" : "issue_verify",
+      "encoding" : "hex",
+      "zenroom" : "0.8.1",
+      "beta" : "..."
+   }
 }
 ```
 
