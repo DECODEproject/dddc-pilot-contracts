@@ -204,7 +204,7 @@ This is the last step of the provisioning of the citizen. This contract creates 
 
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
 | :---------: | :---------: | :---------: | :---------: |
-| **identifier** | output of **06-CITIZEN-aggregate-credential-signature** | output of **04-CREDENTIAL_ISSUER-publish-verifier** | Yes  (e.g. **blindproof_credential.json**) |
+| **identifier** | output of **04-CREDENTIAL_ISSUER-publish-verifier** | output of **06-CITIZEN-aggregate-credential-signature** | Yes  (e.g. **blindproof_credential.json**) |
 | **issuer_identifier** | | | |
 | **declared attributes** (e.g. I'm 18) | | | |
 
