@@ -79,9 +79,9 @@ This script should be run once, and the output should be saved in a secure place
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
 | :---------: | :---------: | :---------: | :---------: |
 | **identifier** | :no_entry_sign: | output of **01-CITIZEN-credential-keygen** | Yes  (e.g. **blind_signature.req**) |
-| **declared attributes** (e.g. I'm 18) | | | |
 
-This contract creates a blind signature request to send to the credential issuer and **for each** declared attribute you should add `and I declare that I am` to the `zencode source`
+
+This contract creates a blind signature request to send to the credential issuer.
 
 The previous saved keypair from [01-CITIZEN-request-keypair.zencode](#01-CITIZEN-request-keypair.zencode) should be passed as the `KEYS` and the **identifier** should be the same of the one stored in such `KEYS`.
 The output should be sent to the credential issuer to be signed.
@@ -214,7 +214,6 @@ This is the last step of the provisioning of the citizen. This contract creates 
 | :---------: | :---------: | :---------: | :---------: |
 | **identifier** | output of **04-CREDENTIAL_ISSUER-publish-verifier** | output of **06-CITIZEN-aggregate-credential-signature** | Yes  (e.g. **blindproof_credential.json**) |
 | **issuer_identifier** | | | |
-| **declared attributes** (e.g. I'm 18) | | | |
 
 This is run by the citizen to create a valid blind proof of the credentials, should be then send to the checker/verifier
 
