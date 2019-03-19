@@ -2,5 +2,4 @@ Scenario 'coconut': "Count the petition results: any Citizen can count the petit
 Given that I receive a petition
 and I receive a tally
 When I count the petition results
-and print debug info
 Then print all data

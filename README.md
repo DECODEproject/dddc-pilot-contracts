@@ -66,6 +66,13 @@ The second step is the verification of blind proof that is structured as follows
 | :---------: | :---------: | :---------: | :---------: |
 | **identifier** | :no_entry_sign: | :no_entry_sign: | Yes  (e.g. **keypair.keys**) |
 
+```
+Scenario 'coconut': "To run over the mobile wallet the first time and store the output as keypair.keys"
+Given that I am known as 'identifier'
+When I create my new keypair
+Then print all data
+```
+
 This script should be run once, and the output should be saved in a secure place, it will contain the secret and public keyring of the citizen
 
 *:running_woman: Expected result format*
@@ -80,6 +87,13 @@ This script should be run once, and the output should be saved in a secure place
 | :---------: | :---------: | :---------: | :---------: |
 | **identifier** | :no_entry_sign: | output of **01-CITIZEN-credential-keygen** | Yes  (e.g. **blind_signature.req**) |
 
+```
+Scenario 'coconut': "To run after the request keypair is stored (keypair.keys)"
+Given that I am known as 'identifier'
+and I have my credential keypair
+When I request a blind signature of my keypair
+Then print all data
+```
 
 This contract creates a blind signature request to send to the credential issuer.
 
@@ -113,6 +127,13 @@ The output should be sent to the credential issuer to be signed.
 | :---------: | :---------: | :---------: | :---------: |
 | **issuer_identifier** | :no_entry_sign: | :no_entry_sign: | Yes  (e.g. **issuer_keypair.keys**) |
 
+```
+Scenario 'coconut': Generate credential issuer keypair
+Given that I am known as 'issuer_identifier'
+When I create my new issuer keypair
+Then print all data
+```
+
 This script should be run once, and the output should be saved in a secure place, it will contain the secret and public keyring of the credential_issuer
 
 *:running_woman: Expected result format*
@@ -139,6 +160,14 @@ This script should be run once, and the output should be saved in a secure place
 | :---------: | :---------: | :---------: | :---------: |
 | **issuer_identifier** | :no_entry_sign: | output of **03-CREDENTIAL_ISSUER-keygen** | Yes  (e.g. **issuer_verifier.keys**) |
 
+```
+Scenario 'coconut': "Publish the credential issuer verification key"
+Given that I am known as 'issuer_identifier'
+and I have my issuer keypair
+When I publish my issuer verification key
+Then print all data
+```
+
 This contract prints the public part of the verification keypair of the credential issuer, that should be available to the **checker**
 
 *:running_woman: Expected result format*
@@ -160,6 +189,16 @@ This contract prints the public part of the verification keypair of the credenti
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
 | :---------: | :---------: | :---------: | :---------: |
 | **issuer_identifier** | output of **02-CITIZEN-credential-request** | output of **03-CREDENTIAL_ISSUER-keygen** | Yes  (e.g. **issuer_signed_credential.json**) |
+
+```
+Scenario 'coconut': "To run by the credential issuer and store the output as ci_signed_credential.json"
+Given that I am known as 'issuer_identifier'
+and I have my issuer keypair
+When I am requested to sign a credential
+and I verify the credential to be true
+and I sign the credential
+Then print all data
+```
 
 This contract takes as DATA the output of [02-CITIZEN-request-blind-signature.zencode](#src/02-CITIZEN-request-blind-signature.zencode) and the secret keypair of the credential issuer and emits a signed credential that should be send back to the citizen.
 
@@ -192,6 +231,15 @@ This contract takes as DATA the output of [02-CITIZEN-request-blind-signature.ze
 | :---------: | :---------: | :---------: | :---------: |
 | **identifier** | output of **05-CREDENTIAL_ISSUER-credential-sign** | output of **01-CITIZEN-credential-keygen** | Yes  (e.g. **credential.json**) |
 
+```
+Scenario 'coconut': "To run by citizen and store the output as credential.json"
+Given that I am known as 'identifier'
+and I have my credential keypair
+When I receive a credential signature 'issuer_identifier'
+and I aggregate the credential into my keyring
+Then print all data
+```
+
 This is the last step of the provisioning of the citizen. This contract creates a blind signed credential to be stored in a secure place.
 
 *:running_woman: Expected result format*
@@ -214,6 +262,17 @@ This is the last step of the provisioning of the citizen. This contract creates 
 | :---------: | :---------: | :---------: | :---------: |
 | **identifier** | output of **04-CREDENTIAL_ISSUER-publish-verifier** | output of **06-CITIZEN-aggregate-credential-signature** | Yes  (e.g. **blindproof_credential.json**) |
 | **issuer_identifier** | | | |
+
+```
+Scenario 'coconut': "To run by citizen and send the result blindproof_credential.json to the verifier/checker"
+Given that I am known as 'identifier'
+and I have my credential keypair
+and I use the verification key by 'issuer_identifier'
+and I have a signed credential
+When I aggregate all the verification keys
+and I generate a credential proof
+Then print all data
+```
 
 This is run by the citizen to create a valid blind proof of the credentials, should be then send to the checker/verifier
 
@@ -245,6 +304,15 @@ This is run by the citizen to create a valid blind proof of the credentials, sho
 | :--------------------: | :---------------: | :-------------------------: | :--------------------: |
 | **issuer_identifier**   | output of **04-CREDENTIAL_ISSUER-publish-verifier** | output of **07-CITIZEN-prove-credential** | :no_entry_sign: |
 
+```
+Scenario 'coconut': "To run by the checker and prints OK in stout if verified"
+Given that I use the verification key by 'issuer_identifier'
+and that I have a valid credential proof
+When I aggregate all the verification keys
+and the credential proof is verified correctly
+Then print string 'OK'
+```
+
 This verifies if a blind proof of credential is valid, in a success case just prints `OK` to stdout
 
 
@@ -255,6 +323,18 @@ This verifies if a blind proof of credential is valid, in a success case just pr
 | **identifier** | output of **04-CREDENTIAL_ISSUER-publish-verifier.zencode** | output of **06-CITIZEN-aggregate-credential-signature.zencode** | Yes  (e.g. **petition_request.json**) |
 | **issuer_identifier** | | | |
 | **petition** (Pe) | | | |
+
+```
+Scenario 'coconut': "Citizen creates a new petition, using his own key, the credential and the credential issuer's public"
+Given that I am known as 'identifier'
+and I have my keypair
+and I have a signed credential
+and I use the verification key by 'issuer_identifier'
+When I aggregate all the verification keys
+and I generate a credential proof
+and I create a new petition 'petition'
+Then print all data
+```
 
 Citizen creates a new petition, using his own key, the credential and the credential issuer's public.
 
@@ -314,6 +394,15 @@ Citizen creates a new petition, using his own key, the credential and the creden
 | :---------: | :---------: | :---------: | :---------: |
 | **issuer_identifier** | output of **09-CITIZEN-create-petition.zencode** | output of **04-CREDENTIAL_ISSUER-publish-verifier.zencode  ** | Yes  (e.g. **petition.json**) |
 
+```
+Scenario 'coconut': "Approve the creation of a petition: executed by a Citizen, using several keys"
+Given that I use the verification key by 'issuer_identifier'
+and I receive a new petition request
+When I aggregate all the verification keys
+and I verify the new petition to be valid
+Then print all data
+```
+
 Approve the creation of a petition: executed by a Citizen, using several keys.
 
 *:running_woman: Expected result format*
@@ -361,6 +450,17 @@ Approve the creation of a petition: executed by a Citizen, using several keys.
 | **issuer_identifier** | | | |
 | **petition** (Pe) | | | |
 
+```
+Scenario 'coconut': "Sign petition: the Citizen signs the petition, with his own keys, aggregating it with the credential and with the Credential Issuer public key"
+Given that I am known as 'identifier' 
+and I have my keypair
+and I have a signed credential
+and I use the verification key by 'issuer_identifier'
+When I aggregate all the verification keys
+and I sign the petition 'petition'
+Then print all data
+```
+
 Sign petition: the Citizen signs the petition, with his own keys, aggregating it with the credential and with the Credential Issuer public key.
 
 *:running_woman: Expected result format*
@@ -396,6 +496,14 @@ Sign petition: the Citizen signs the petition, with his own keys, aggregating it
 | :---------: | :---------: | :---------: | :---------: |
 | :no_entry_sign:  | output of **11-CITIZEN-sign-petition.zencode** | output of **10-VERIFIER-approve-petition.zencode** | Yes  (e.g. **petition-increase.json**) |
 
+```
+Scenario 'coconut': "Add a petition to the ledger (count): here the petition signature created by the citizen is aggregated with the petition and written to the ledger, no encryption is used"
+Given that I receive a signature
+and I receive a petition
+When a valid petition signature is counted
+Then print all data
+```
+
 Add a petition to the ledger (count): here the petition signature created by the citizen is aggregated with the petition and written to the ledger, no encryption is used.
 
 *:running_woman: Expected result format*
@@ -430,6 +538,16 @@ Add a petition to the ledger (count): here the petition signature created by the
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
 | :---------: | :---------: | :---------: | :---------: |
 | **identifier** | output of **12-LEDGER-add-signed-petition.zencode** | output of **06-CITIZEN-aggregate-credential-signature.zencode** | Yes  (e.g. **tally.json**) |
+
+
+```
+Scenario 'coconut': "Close the petition, formally 'the tally': this contract adds the final block to the ledger, making it impossible to sign petition after this has happened. It's also impossible to count the signatures without having the petition tallied"
+Given that I am known as 'identifier' 
+and I have my keypair
+and I receive a petition
+When I tally the petition
+Then print all data
+```
 
 Close the petition, formally 'the tally': this contract adds the final block to the ledger, making it impossible to sign petition after this has happened. It's also impossible to count the signatures without having the petition tallied.
 
@@ -474,6 +592,14 @@ Close the petition, formally 'the tally': this contract adds the final block to 
 | :--------------------: | :---------------: | :-------------------------: | :--------------------: |
 | :no_entry_sign:   | output of **11-CITIZEN-sign-petition.zencode** | output of **13-CITIZEN-tally-petition.zencode** | :no_entry_sign: |
 
+```
+Scenario 'coconut': "Count the petition results: any Citizen can count the petition as long as they have the 'tally'"
+Given that I receive a petition
+and I receive a tally
+When I count the petition results
+Then print all data
+```
+
 Count the petition results: any Citizen can count the petition as long as they have the 'tally'.
 
 
@@ -482,6 +608,11 @@ Count the petition results: any Citizen can count the petition as long as they h
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
 | :---------: | :---------: | :---------: | :---------: |
 | :no_entry_sign: | content you want to hash | :no_entry_sign: | HASH |
+
+
+```lua
+print(ECDH.kdf(HASH.new('sha512'), DATA))
+```
 
 This script make a unique hash of the content passed in DATA.
 The hashing algorithm is a sha512 with [KDF](https://en.wikipedia.org/wiki/Key_derivation_function),
