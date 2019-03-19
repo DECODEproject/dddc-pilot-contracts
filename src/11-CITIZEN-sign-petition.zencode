@@ -1,7 +1,3 @@
--- 0 for silent logging
-ZEN:begin(0)
-
-ZEN:parse([[
 Scenario 'coconut': "Sign petition: the Citizen signs the petition, with his own keys, aggregating it with the credential and with the Credential Issuer public key"
 Given that I am known as 'identifier' 
 and I have my keypair
@@ -10,6 +6,3 @@ and I use the verification key by 'issuer_identifier'
 When I aggregate all the verification keys
 and I sign the petition 'petition'
 Then print all data
-]])
- 
-ZEN:run()

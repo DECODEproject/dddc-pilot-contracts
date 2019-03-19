@@ -1,13 +1,6 @@
--- 0 for silent logging
-ZEN:begin(0)
-
-ZEN:parse([[
 Scenario 'coconut': "Count the petition results: any Citizen can count the petition as long as they have the 'tally'"
 Given that I receive a petition
 and I receive a tally
 When I count the petition results
 and print debug info
 Then print all data
-]])
-
-ZEN:run()
