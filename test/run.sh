@@ -6,7 +6,7 @@ set -o pipefail
 # set -x
 # https://coderwall.com/p/fkfaqq/safer-bash-scripts-with-set-euxo-pipefail
 
-pfx=./src
+pfx=/src
 # pfx=src
 
 zenroom                                                            -z $pfx/01-CITIZEN-credential-keygen.zencode              > keypair.keys
