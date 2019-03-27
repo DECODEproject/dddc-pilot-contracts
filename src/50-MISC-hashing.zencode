@@ -1,6 +1,1 @@
-# Old lua, which reads DATA as hexadecimal 
-#
-# print(ECDH.kdf(HASH.new('sha512'), DATA))
-#
-# The new lua casts it to string
 print(ECDH.kdf(HASH.new('sha512'), str(DATA)))
