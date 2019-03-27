@@ -1,12 +1,14 @@
 # Use this file if you want to run the Coconut flow manually
 # in order to do this, you'll have to download a compiled version of Zenroom, find he latest builds here:
 # https://sdk.dyne.org:4443/view/zenroom/
+#
+# run this from ./dddc-pilot-contracts  
 
 #!/bin/bash
 
 set -e 
 set -u
-set -o pipefail 
+# set -o pipefail 
 # set -x
 # https://coderwall.com/p/fkfaqq/safer-bash-scripts-with-set-euxo-pipefail
 
