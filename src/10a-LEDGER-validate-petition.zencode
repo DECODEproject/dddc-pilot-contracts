@@ -1,0 +1,3 @@
+Scenario 'coconut': "Validate a petition: Executed by the ledger in the validation phase to check that a petition is good to store. Idempotent."
+Given that I receive a petition
+Then print all data

@@ -442,6 +442,34 @@ Approve the creation of a petition: executed by a Citizen, using several keys.
 
 ```
 
+### 10a-LEDGER-validate-petition.zencode
+
+| :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
+| :---------: | :---------: | :---------: | :---------: |
+| **issuer_identifier** | output of **09-CITIZEN-create-petition.zencode** |  | Yes  (e.g. **petition_validatin.json**) |
+
+```
+Scenario 'coconut': "Validate a petition: Executed by the ledger in the validation phase to check that a petition is good to store. Idempotent."
+Given that I receive a petition
+Then print all data
+
+```
+
+Validate the structure of the petition. Currently this does no cryptographic validation, just checks that the petition is the correct data structure.
+
+We can use this in ledger implementations that require a deterministic verification step, for example in our zentooth transaction processor for SawTooth.
+
+*:running_woman: Expected result format*
+
+```json
+
+{
+	
+}
+
+
+```
+
 ### 11-CITIZEN-sign-petition.zencode
 
 | :symbols: INPUT PARAMS | :arrow_down: DATA | :closed_lock_with_key: KEYS | :page_with_curl: OUPUT | 
