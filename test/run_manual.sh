@@ -25,7 +25,7 @@ zenroom -k credential.json            -a ci_verify_keypair.keys    -z $pfx/07-CI
 zenroom -k blindproof_credential.json -a ci_verify_keypair.keys    -z $pfx/08-VERIFIER-verify-credential.zencode
 zenroom -k credential.json            -a ci_verify_keypair.keys    -z $pfx/09-CITIZEN-create-petition.zencode                > petition_request.json
 zenroom -k ci_verify_keypair.keys     -a petition_request.json     -z $pfx/10-VERIFIER-approve-petition.zencode              > petition.json
-zenroom                               -a petition.json             -z $pfx/10a-LEDGER-validate-petition.zencode              > petition_validation.json
+zenroom                               -a petition.json             -z $pfx/51-LEDGER-validate-petition.zencode              > petition_validation.json
 zenroom -k credential.json            -a ci_verify_keypair.keys    -z $pfx/11-CITIZEN-sign-petition.zencode                  > petition_signature.json
 zenroom -k petition.json              -a petition_signature.json   -z $pfx/12-LEDGER-add-signed-petition.zencode             > petition-increase.json
 zenroom -k credential.json            -a petition-increase.json    -z $pfx/13-CITIZEN-tally-petition.zencode                 > tally.json
