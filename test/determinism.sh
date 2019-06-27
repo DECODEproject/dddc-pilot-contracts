@@ -34,7 +34,6 @@ zenroom -k tally.json                 -a petition_increase.json    -z $pfx/14-CI
 req=(petition_request.json petition_request2.json petition_request3.json)
 sig=(petition_signature.json petition_signature2.json petition_signature3.json)
 inc=(petition_increase.json petition_increase2.json petition_increase3.json)
-./test/run.sh
 
 for i in $req; do
 	jsonsort $i
