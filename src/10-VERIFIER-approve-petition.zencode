@@ -1,6 +1,6 @@
 Scenario 'coconut': "Approve the creation of a petition: executed by a Citizen, using several keys"
 Given I have inside 'issuer identifier' a valid 'ca_verify'
-and I have a valid 'credential proof'
+and I have a valid 'credential_proof'
 and I have a valid 'petition'
 When I aggregate verifiers from 'ca_verify'
 and I verify the credential proof is correct

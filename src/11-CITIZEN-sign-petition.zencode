@@ -1,8 +1,8 @@
 Scenario 'coconut': "Sign petition: the Citizen signs the petition, with his own keys, aggregating it with the credential and with the Credential Issuer public key"
-Given that I am known as 'identifier' 
+Given that I am known as 'identifier'
 and I have my valid 'credential_keypair'
 and I have my valid 'credentials'
-and I have inside 'MadHatter' a valid 'ca_verify'
-When I aggregate verifiers from 'ca verify'
-and I sign the petition 'To betray the Queen'
+and I have inside 'issuer_identifier' a valid 'ca_verify'
+When I aggregate verifiers from 'ca_verify'
+and I sign the petition 'petition'
 Then print the 'petition_signature'
