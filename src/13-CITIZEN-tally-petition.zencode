@@ -1,7 +1,7 @@
-Scenario 'coconut': "Close the petition, formally 'the tally': this contract adds the final block to the ledger, making it impossible to sign petition after this has happened. It's also impossible to count the signatures without having the petition tallied"
-Given that I am known as 'identifier' 
-and I have my valid 'credential_keypair'
-and I have a valid 'petition'
-When I tally the petition
-Then print the 'petition'
-and print the 'petition_tally'
+Scenario 'coconut': scenario
+         Given that I am known as 'identifier'
+         and I have my valid 'credential keypair'
+         and I have a valid 'petition'
+         When I tally the petition
+         Then print the 'petition'
+         and print the 'petition_tally'
